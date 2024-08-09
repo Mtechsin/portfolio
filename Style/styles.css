@@ -46,12 +46,9 @@ body {
 }
 
 /* Style for header list items */
-header{
-    margin-top: 1.5vh;
-}
-header,footer {
+footer {
     font-size: large;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     background-color: #183D3D;
     color: #ffffff;
     display: flex;
@@ -60,7 +57,68 @@ header,footer {
     border: 10px solid #9d9e9e;
     /* Thin border */
 }
+header {
+    position: fixed;
+    padding: 0.25rem 0.5rem;
+    background-color: #183D3D;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #9d9e9e;
+    border-radius: 9999px;
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+    top: 1vh;
+}
 
+nav {
+    position: relative;
+    padding: 0.25rem 0;
+}
+
+nav ul {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-item {
+    list-style: none;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.3s;
+}
+
+.nav-item a {
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.nav-item span {
+    font-size: 0.875rem;
+    margin-left: 0.25rem;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: #93B1A6;
+}
+
+#nav-indicator {
+    height: 2px;
+    background-color: #93B1A6;
+    position: absolute;
+    bottom: 0;
+    transition: all 0.3s ease;
+}
+/*
 nav ul {
     display: flex;
     gap: 1rem;
@@ -83,9 +141,9 @@ nav ul li:focus {
     background-color: #93B1A6;
     border: 1px solid #040D12;
 }
-
+*/
 #cursor-effect {
-    position: absolute;
+    position: fixed;  /* Change from absolute to fixed */
     top: 0;
     left: 0;
     width: 500px;
@@ -95,8 +153,12 @@ nav ul li:focus {
     pointer-events: none;
     mix-blend-mode: lighten;
     filter: blur(50px);
+    transform: translate(-50%, -50%);  /* Center the effect on the cursor */
     transition: transform 0.1s ease;
+    will-change: transform;  /* Optimize for animations */
+    overflow: hidden;  /* Ensure the effect doesn't cause scrollbars */
 }
+
 
 pre,
 code {
@@ -123,6 +185,5 @@ code {
 }
 
 footer{
-    
     margin-bottom: 1.5vh;
 }

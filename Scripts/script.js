@@ -3,35 +3,38 @@
 document.addEventListener('DOMContentLoaded', () => {
     const cursorEffect = document.getElementById('cursor-effect');
     let mouseX = 0, mouseY = 0;
-    //let cursorX = 0, cursorY = 0;
 
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        //console.log(mouseY)
     });
 
     function animate() {
-        /*if(mouseY <= 700 ){
-           // console.log("up")
-            cursorX = (mouseX - 250); // Easing factor
-            cursorY = (mouseY - 250);
-        }
-        else{
-            //console.log("down")
-            cursorX = (mouseX - 250); // Easing factor
-            cursorY = (mouseY + 250); 
-        }
-            */
-        cursorX = (mouseX - 250 )* 0.2; // Easing factor
-        cursorY = (mouseY - 250 )* 0.45;
-        cursorEffect.style.transform = `translate(${cursorX}%, ${cursorY}%)`;
-       // console.log("mousex x posistion " + mouseX + "cursor y position " + mouseY )
+        // Effect dimensions
+        const effectWidth = 500;
+        const effectHeight = 500;
+
+        // Calculate the position, keeping the effect within the viewport
+        const minX = 0;
+        const minY = 0;
+        const maxX = window.innerWidth - effectWidth;
+        const maxY = window.innerHeight - effectHeight;
+
+        // Center the effect on the cursor
+        let x = mouseX - effectWidth / 2;
+        let y = mouseY - effectHeight / 2;
+
+        // Constrain the effect within the viewport
+        x = Math.max(minX, Math.min(x, maxX));
+        y = Math.max(minY, Math.min(y, maxY));
+
+        cursorEffect.style.transform = `translate(${x}px, ${y}px)`;
         requestAnimationFrame(animate);
     }
     
     animate();
 
+    // Resize event listener to adjust maxX and maxY if needed
         // Typing effect
         const aboutTextElement = document.getElementById('about-text');
         const aboutText = `
@@ -136,4 +139,24 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     });
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const navItems = document.querySelectorAll('.nav-item');
+    const indicator = document.getElementById('nav-indicator');
+
+    function setIndicator(element) {
+        indicator.style.width = `${element.offsetWidth}px`;
+        indicator.style.left = `${element.offsetLeft}px`;
+    }
+
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            navItems.forEach(i => i.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            setIndicator(e.currentTarget);
+        });
+    });
+
+    // Set initial position
+    setIndicator(navItems[0]);
 });
