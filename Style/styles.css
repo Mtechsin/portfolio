@@ -1,0 +1,128 @@
+/* styles.css */
+
+/* Custom colors */
+.bg-primary {
+    background-color: #040D12;
+}
+
+.text-primary {
+    color: #040D12;
+}
+
+.bg-secondary {
+    background-color: #183D3D;
+}
+
+.text-secondary {
+    color: #5C8374;
+}
+
+.bg-accent {
+    background-color: #93B1A6;
+}
+
+.text-accent {
+    color: #ffffff;
+}
+
+/* Apply Source Code Pro font to the entire page */
+body {
+    padding-left: 3vw;
+    padding-right: 3vw;
+    height: 100%;
+    width: 100%;
+    font-family: 'Source Code Pro', monospace;
+    align-items: center;
+    justify-content: center;
+    /* Prevent overflow */
+}
+#background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Style for header list items */
+header{
+    margin-top: 1.5vh;
+}
+header,footer {
+    font-size: large;
+    padding: 1rem 2rem;
+    background-color: #183D3D;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 10px solid #9d9e9e;
+    /* Thin border */
+}
+
+nav ul {
+    display: flex;
+    gap: 1rem;
+}
+
+nav ul li {
+    list-style: none;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav ul li:hover,
+nav ul li:focus {
+    background-color: #93B1A6;
+    border: 1px solid #040D12;
+}
+
+#cursor-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 500px;
+    background: rgba(1, 196, 131, 0.051);
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: lighten;
+    filter: blur(50px);
+    transition: transform 0.1s ease;
+}
+
+pre,
+code {
+    background-color: #040D12;
+    color: #ffffff;
+    margin: 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    overflow-x: auto;
+    font-size: 30px;
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    background-color: #dcdcdc;
+    animation: blink 0.7s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        background-color: transparent;
+    }
+}
+
+footer{
+    
+    margin-bottom: 1.5vh;
+}
