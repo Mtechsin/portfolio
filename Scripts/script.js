@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       - Computer automation
       - General coding
     My goal is to use my skills to solve complex problems
-    and create innovative solutions.
+    and create innovative solutions :).
         `;
         let index = 0;
     
