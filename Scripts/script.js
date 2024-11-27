@@ -1,4 +1,34 @@
 // script.js
+const sidebar = document.querySelector(".sidebar");
+const sidebarClose = document.querySelector("#sidebar-close");
+const menu = document.querySelector(".menu-content");
+const menuItems = document.querySelectorAll(".submenu-item");
+const subMenuTitles = document.querySelectorAll(".submenu .menu-title");
+const main = document.getElementById('mainpage');
+
+
+sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
+main.addEventListener("click", () => sidebar.classList.add('close'));
+
+menuItems.forEach((item, index) => {
+  item.addEventListener("click", () => {
+    menu.classList.add("submenu-active");
+    item.classList.add("show-submenu");
+    menuItems.forEach((item2, index2) => {
+      if (index !== index2) {
+        item2.classList.remove("show-submenu");
+      }
+    });
+  });
+});
+
+subMenuTitles.forEach((title) => {
+  title.addEventListener("click", () => {
+    menu.classList.remove("submenu-active");
+  });
+});
+
+console.log(menuItems, subMenuTitles);
 
 document.addEventListener('DOMContentLoaded', () => {
     const cursorEffect = document.getElementById('cursor-effect');
@@ -34,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     animate();
 
+    /*
     // Resize event listener to adjust maxX and maxY if needed
         // Typing effect
         const aboutTextElement = document.getElementById('about-text');
@@ -57,106 +88,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     
-        type();
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('background-canvas');
-    const ctx = canvas.getContext('2d');
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const nodes = [];
-    const numNodes = 50;  // Adjust this for more or fewer nodes
-    const connectionDistance = 150;  // Maximum distance for connecting nodes
-
-    // Node class
-    class Node {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = Math.random() * 0.5 - 0.25;
-            this.speedY = Math.random() * 0.5 - 0.25;
-        }
-
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-
-            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-        }
-
-        draw() {
-            ctx.fillStyle = 'rgba(147, 177, 166, 0.5)';  // Using your accent color
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    // Create nodes
-    for (let i = 0; i < numNodes; i++) {
-        nodes.push(new Node());
-    }
-
-    // Animation loop
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Update and draw nodes
-        nodes.forEach(node => {
-            node.update();
-            node.draw();
-        });
-
-        // Draw connections
-        ctx.strokeStyle = 'rgba(147, 177, 166, 0.15)';  // Using your accent color
-        for (let i = 0; i < nodes.length; i++) {
-            for (let j = i + 1; j < nodes.length; j++) {
-                const dx = nodes[i].x - nodes[j].x;
-                const dy = nodes[i].y - nodes[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < connectionDistance) {
-                    ctx.beginPath();
-                    ctx.moveTo(nodes[i].x, nodes[i].y);
-                    ctx.lineTo(nodes[j].x, nodes[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    // Resize canvas when window is resized
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const navItems = document.querySelectorAll('.nav-item');
-    const indicator = document.getElementById('nav-indicator');
-
-    function setIndicator(element) {
-        indicator.style.width = `${element.offsetWidth}px`;
-        indicator.style.left = `${element.offsetLeft}px`;
-    }
-
-    navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            navItems.forEach(i => i.classList.remove('active'));
-            e.currentTarget.classList.add('active');
-            setIndicator(e.currentTarget);
-        });
-    });
-
-    // Set initial position
-    setIndicator(navItems[0]);
+        type();*/
 });
