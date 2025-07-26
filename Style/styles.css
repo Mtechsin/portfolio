@@ -913,7 +913,7 @@ footer {
   }
 
   .experience-timeline::before {
-    left: 30px;
+    display: none;
   }
 
   .timeline-item {
@@ -926,7 +926,7 @@ footer {
   }
 
   .timeline-item::after {
-    left: 17px;
+    display: none;
   }
 
   .timeline-item:nth-child(odd)::after,
@@ -946,6 +946,10 @@ footer {
 
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+
+  experience-timeline::before {
+    display: none;
   }
 }
 
@@ -1003,11 +1007,11 @@ footer {
   width: 16px;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: var(--primary-green);
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   transform: translateX(26px);
 }
 
